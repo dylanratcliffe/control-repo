@@ -142,6 +142,23 @@ One of the components setup by this control-repo is that when you "push" code to
 5. Allow the push to complete and then give it few seconds to complete
  - Open `/etc/puppetlabs/code/environments/production/README.md` and confirm your change is present
 
+## Using Code Manager
+
+Code manager obsoletes the need for the Zack/r10k Webhook, so if you use it you'll need to remove the zack_r10k_webhook class from you master and uninstall it ( need docs or code for this )
+
+To enable the code manager:
+
+1. Login to the PE console
+2. Select Access Control in the left hand panel
+3. On the User Roles page, add a new role called `Deploy Environments`
+ - NOTE: make sure to name it exactly as I have because the puppet code expects that exact name
+4. After creating the role click through and select the permissions tab
+ - Add Puppet Environmnet type, Deploy Code permission, and All object 
+ - Add Tokens type, override default expiry permission
+5. Finally, add `profile::code_manager` to `role::all_in_one` and remove `profile::zack_r10k_webhook`.
+6. Run `puppet agent -t`
+ - 
+
  
 
 ----
