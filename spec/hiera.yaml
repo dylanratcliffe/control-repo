@@ -1,0 +1,11 @@
+---
+:backends:
+  - yaml
+
+:yaml:
+  :datadir: hieradata
+
+:hierachy:
+  - 'virtual/%{::virtual}'
+  - 'nodes/%{::trusted.certname}'
+  - 'common'
